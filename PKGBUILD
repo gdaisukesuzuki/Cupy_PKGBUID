@@ -1,5 +1,5 @@
 
-# Maintainer: Mamy Ratsimbazafy <mamy (dot) ratsimbazafy_pkgbuild [at] gadz (dot) org>
+# Maintainer: 
 
 pkgname=python-cupy-cudnn-git
 _pkgname=cupy
