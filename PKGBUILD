@@ -27,7 +27,7 @@ build() {
   export CUDA_PATH=/opt/cuda
 #  export CC=gcc-6
 #  export CXX=g++-6
-  python setup.py build
+  sudo python setup.py build
 }
 
 package() {
@@ -36,7 +36,7 @@ package() {
   export CUDA_PATH=/opt/cuda
 #  export CC=gcc-6
 #  export CXX=g++-6
-  python setup.py install --root=${pkgdir} --optimize=1
+  sudo python setup.py install --root=${pkgdir} --optimize=1
 
-  install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/python-$_pkgname
+  sudo install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/python-$_pkgname
 }
