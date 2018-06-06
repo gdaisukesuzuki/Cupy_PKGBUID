@@ -1,9 +1,9 @@
 
-# Maintainer: 
+# Maintainer:
 
 pkgname=python-cupy-cudnn-git
 _pkgname=cupy
-pkgver=v4.0.0b3.r4.g914494815
+pkgver=v5.0.0b1.r128.g0a87a602e
 pkgrel=1
 pkgdesc='NumPy-like API accelerated with CUDA'
 arch=('any')
@@ -25,18 +25,20 @@ pkgver() {
 build() {
   cd $_pkgname
   export CUDA_PATH=/opt/cuda
-#  export CC=gcc-6
-#  export CXX=g++-6
-  sudo python setup.py build
+  export CC=gcc-7
+  export CXX=g++-7
+  export CFLAGS='-march=skylake -mtune=native -O3 -pipe -fstack-protector'
+  # export CFLAGS='-march=skylake -mtune=native -O3 -pipe -fstack-protector --param=ssp-buffer-size=4a -I/opt/cuda/include'
+  python setup.py build
 }
 
 package() {
   cd $_pkgname
 
   export CUDA_PATH=/opt/cuda
-#  export CC=gcc-6
-#  export CXX=g++-6
-  sudo python setup.py install --root=${pkgdir} --optimize=1
+  export CC=gcc-7
+  export CXX=g++-7
+  python setup.py install --root=${pkgdir} --optimize=1
 
-  sudo install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/python-$_pkgname
+  install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/python-$_pkgname
 }
